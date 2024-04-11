@@ -8,9 +8,32 @@ import ToDoList from './ToDoApp/ToDoList';
 import Calendar from 'react-calendar';
 import './Calender/Calender.css'
 import Cards from './BulbCards/Cards' ;
+import { PieChart } from '@mui/x-charts/PieChart';
+import { Gauge, gaugeClasses } from '@mui/x-charts/Gauge';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import WorkIcon from '@mui/icons-material/Work';
+import Avatar from '@mui/material/Avatar';
+import { BarChart } from '@mui/x-charts/BarChart';
+import { axisClasses } from '@mui/x-charts';
 
 
 function Dashboard() {
+
+  const pieData = [
+    { label: 'Group A', value: 400 },
+    { label: 'Group B', value: 300 },
+    { label: 'Group C', value: 300 },
+    { label: 'Group D', value: 200 },
+  ];
+  
+  const settings = {
+    width: 200,
+    height: 200,
+    value: 60,
+  };
 
   const data = [
     {
@@ -57,176 +80,223 @@ function Dashboard() {
     }
   ];
 
+  let announcements = [
+    {
+      msg:'sense of urgency',
+      date:'Jan 7, 2024'
+    }
+  ]
+
+
+  const chartSetting = {
+    yAxis: [
+      {
+        label: 'employees',
+      },
+    ],
+    // width: 1000,
+    // height: 300,
+    sx: {
+      [`.${axisClasses.left} .${axisClasses.label}`]: {
+        transform: 'translate(-20px, 0)',
+      },
+    },
+  };
+
+  const dataset = [
+    {
+      new: 59,
+      left: 57,
+      existing: 86,
+      increment: 21,
+      month: 'Jan',
+    },
+    {
+      new: 50,
+      left: 52,
+      existing: 78,
+      increment: 28,
+      month: 'Fev',
+    },
+    {
+      new: 47,
+      left: 53,
+      existing: 106,
+      increment: 41,
+      month: 'Mar',
+    },
+    {
+      new: 54,
+      left: 56,
+      existing: 92,
+      increment: 73,
+      month: 'Apr',
+    },
+    {
+      new: 57,
+      left: 69,
+      existing: 92,
+      increment: 99,
+      month: 'May',
+    },
+    {
+      new: 60,
+      left: 63,
+      existing: 103,
+      increment: 144,
+      month: 'June',
+    },
+    {
+      new: 59,
+      left: 60,
+      existing: 105,
+      increment: 319,
+      month: 'July',
+    },
+    {
+      new: 65,
+      left: 60,
+      existing: 106,
+      increment: 249,
+      month: 'Aug',
+    },
+    {
+      new: 51,
+      left: 51,
+      existing: 95,
+      increment: 131,
+      month: 'Sept',
+    },
+    {
+      new: 60,
+      left: 65,
+      existing: 97,
+      increment: 55,
+      month: 'Oct',
+    },
+    {
+      new: 67,
+      left: 64,
+      existing: 76,
+      increment: 48,
+      month: 'Nov',
+    },
+    {
+      new: 61,
+      left: 70,
+      existing: 103,
+      increment: 25,
+      month: 'Dec',
+    },
+  ];
+  
+  const valueFormatter = (value) => `${value} employees`;
+
   return (
-    <div className='dash'>
+    <div className='bg-slate-100 min-h-[1000px]' >
       <div className='head-crd'>
         <Cards />
       </div>
-      <div className='top-cards'>
-        {/* ----------First Card-------- */}
-        <div className='sing'>
-          <p className='head-to'>Visits Today</p>
-          <div className='vfvg'>
-            <div className='cd-top'><p>764 </p> <BsArrowUpRight className='arr' />
-            </div>
-            <div className='cd-1'>
-              <span><p>+830</p><p className='poiu'>Logins</p></span>
-              <span><p>0.5%</p><p className='poiu'>SignOut</p></span>
-              <span><p>4.5%</p><p className='poiu'>Rate</p></span>
-            </div>
-          </div>
-        </div>
-        {/* ------Second Card-------- */}
-        <div className='sing '>
-          <p className='head-to'>Revenue Breakdown</p>
-          <div className='two'>
-            <React.Fragment>
-              <Chart
-                type='donut'
-                width={250}
-                height={250}
-                series={[45, 67, 89, 32, 52]}
-                options={{
-                  labels: ['USA', 'China', 'Russia','India', 'US'],
-                  dataLabels: {
-                    enabled: false
-                  }
-                }}
-              />
-            </React.Fragment>
-          </div>
 
-        </div>
-        {/* ------------Third Card----------- */}
-        <div className='sing'>
-          <p className='head-to'>App Performance</p>
-          {/* --Tooltip-- */}
-          {/* <div className='tool'>
-            <div className='fir_1'>
-            <span className='cir_1'></span>
-            <p>This Period</p>
-            </div>
-            <div className='fir_2'>
-            <span className='cir_2'></span>
-            <p>Last Period</p>
-            </div>
 
-          </div> */}
-          {/* <p className='tool'>
-          <small>
-            <span className='cir_1'></span>
-            <p>This Period</p>
-          </small>
-          <small>
-            <span className='cir_2'></span>
-            <p>Last Period</p>
-            
-          </small>
-          </p> */}
-          {/* --First Progress Bar-- */}
-          <div className='head-three'>
-            <div ><p className='crd-head'>SDK</p></div>
-            <div className='prg'>
-              <div className='prg_1' >
-                <div className='prg_2'>
-
-                </div>
-              </div>
-            </div>
-
-            {/* --Second Progress Bar--*/}
-            <div className='prg'>
-              <div className='prg_1' >
-                <div className='prgf'>
-
-                </div>
-              </div>
-            </div>
-            {/* --Third Progress Bar-- */}
-            <div><p className='crd-head'>Integration</p></div>
-            <div className='prg'>
-              <div className='prg_1' >
-                <div className='prg_2'>
-
-                </div>
-              </div>
-            </div>
-            {/* --Fourth Progress Bar-- */}
-            <div className='prg'>
-              <div className='prg_1' >
-                <div className='prgf'>
-
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-        {/* ------------Fourth Card---------  */}
-        <div className='sing'>
-          <p className='head-to'>Server Overview</p>
-          <div className='graph'>
-            <p>60% / 3.3 Ghz</p>
-            <LineChart width={100} height={50} data={data}>
-              <Line dataKey="pv" stroke="orange" strokeWidth={2} dot={false} />
-            </LineChart>
-          </div>
-          <div className='graph'>
-            <p>30% / 6.3 Ghz</p>
-            <LineChart width={100} height={50} data={data}>
-              <Line dataKey="pv" stroke="blue" strokeWidth={2} dot={false} />
-            </LineChart>
-          </div>
-          <div className='graph'>
-            <p>68% / 2.3 Ghz</p>
-            <LineChart width={100} height={50} data={data}>
-              <Line dataKey="pv" stroke="aqua" strokeWidth={2} dot={false} />
-            </LineChart>
-          </div>
-        </div>
+<div className='grid grid-cols-3 gap-4 p-4'>
+      <div className='p-4 shadow-xl bg-white'>
+      <p>Candidate Analysis</p>     
+      <PieChart
+        series={[
+          {
+            data: [ ...pieData ],
+            innerRadius: 30,
+            outerRadius: 100,
+            paddingAngle: 5,
+            cornerRadius: 5,
+            startAngle: -90,
+            endAngle: 180,
+            cx: 150,
+            cy: 150,
+          }
+        ]}
+        height={300}
+      />
       </div>
-      {/* ---------Chart---------- */}
-      <div className='line_chart'>
-      <div style={{ width: '100%', height: '350px', padding: '10px' }}>
-      <ResponsiveContainer>
-        <AreaChart width={1080} height={600} data={data} style={{ }}>
-          {/* <CartesianGrid strokeDasharray="3 3" /> */}
-          <XAxis dataKey="name"  stroke="black" />
-          <YAxis stroke="black" />
-          <Tooltip />
-          <Legend />
-          {/* <Line
-            type="monotone"
-            dataKey="pv"
-            stroke="red"
-          // activeDot={{ r: 8 }}
-          // activeDot={null}
-          />
-          <Line type="monotone" dataKey="uv" stroke="#4a70ed" /> */}
-          <Area type="monotone" dataKey="uv" stackId="1" stroke="#fe6f5e" fill="#fe6f5e" />
-          <Area type="monotone" dataKey="pv" stackId="1" stroke="#ffe135" fill="#ffe135" />
-          <Area type="monotone" dataKey="amt" stackId="1" stroke="#318ce7" fill="#318ce7" />
-        </AreaChart>
-         </ResponsiveContainer>
+      <div className='p-4 bg-white shadow-xl'>
+        <p>Attendence</p>
+        <div className='grid grid-cols-2 mt-4 gap-4'>
+        <div><Gauge
+        {...settings}
+        cornerRadius="50%"
+        sx={(theme) => ({
+          [`& .${gaugeClasses.valueText}`]: {
+            fontSize: 40,
+          },
+          [`& .${gaugeClasses.valueArc}`]: {
+            fill: '#52b202',
+          },
+          [`& .${gaugeClasses.referenceArc}`]: {
+            fill: theme.palette.text.disabled,
+          },
+        })}
+      />
+      <p className='text-center'>Today</p></div>
+        <div><Gauge
+        className='w-full'
+        {...settings}
+        cornerRadius="50%"
+        sx={(theme) => ({
+          [`& .${gaugeClasses.valueText}`]: {
+            fontSize: 40,
+          },
+          [`& .${gaugeClasses.valueArc}`]: {
+            fill: '#52b202',
+          },
+          [`& .${gaugeClasses.referenceArc}`]: {
+            fill: theme.palette.text.disabled,
+          },
+        })}
+      ></Gauge>
+      <p className='text-center'>month</p>
       </div>
-      </div>
-      {/* ---Table--- */}
-      <Table />
-
-      {/* ------Calender And To Do List------- */}
-      <div className='Cal-do'>
+        </div>
         
-
-        {/* ------Calender---- */}
-        <div className='cal-main'>
+      </div>
+      <div className='p-4 bg-white shadow-xl'>
+        <p>Announcements</p>
+        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        {announcements.map((i)=>{
+          return <>
+          <ListItem>
+        <ListItemAvatar>
+          <Avatar>
+            <WorkIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary={i.msg} secondary={i.date} />
+      </ListItem>
+          </>
+        })}
+        </List>
+      </div>
+    </div>
+    <div className='grid grid-cols-3 gap-4 p-4'>
+        <div className='cal-main bg-white shadow-xl'>
           <Calendar />
         </div>
+        <div className='col-span-2 pl-4 bg-white shadow-xl'>
+        <BarChart
+        className=' ml-4'
+      dataset={dataset}
+      xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
+      series={[
+        { dataKey: 'new', label: 'New', valueFormatter },
+        { dataKey: 'left', label: 'Left', valueFormatter },
+        { dataKey: 'existing', label: 'Exsiting', valueFormatter },
+        { dataKey: 'increment', label: 'Increment', valueFormatter },
+      ]}
+      {...chartSetting}
+    />
 
-        {/* ------To Do List----- */}
-        <div className='todo-main'>
-          <ToDoList />
         </div>
-      </div>
+        </div>
     </div>
   )
 }

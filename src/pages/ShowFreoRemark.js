@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Table, Button, FormControl } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
-import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+// import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 const ViewGsheet = () => {
   const [clients, setClients] = useState([]);
@@ -54,7 +54,7 @@ const ViewGsheet = () => {
           </div>
           <div>
 
-        <ReactHTMLTableToExcel
+        {/*<ReactHTMLTableToExcel
           id="test-table-xls-button"
           className="download-table-xls-button"
           table="clients-table"
@@ -64,7 +64,7 @@ const ViewGsheet = () => {
           buttonText="Download Excel"
           // buttonText={<FontAwesomeIcon icon="fa-solid fa-arrow-down" />}
           
-        />
+        />*/}
         </div>
       </div>
       <Table striped bordered hover id="clients-table">

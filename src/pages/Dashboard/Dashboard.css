@@ -8,7 +8,7 @@
 .dash {
     width: 93.2vw;
     height: max-content;
-    background: #e4dede;
+    background: rgb(248, 246, 246);
 }
 
 @media (max-width: 768px) {
@@ -183,9 +183,10 @@
 
 .cal-main {
     box-sizing: border-box;
-    width: 577px;
-    height: 500px;
+    /* width: 577px;
+    height: 500px; */
     /* margin-right: 54px; */
+
 }
 
 .todo-main {
