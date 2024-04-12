@@ -26,6 +26,10 @@
 }
 
 
+.printpage {
+    -webkit-print-color-adjust: exact;
+}
+
 .top-cards {
     display: flex;
     justify-content: space-around;
